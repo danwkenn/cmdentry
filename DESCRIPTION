@@ -1,0 +1,15 @@
+Package: cmdentry
+Type: Package
+Title: Pre-built functions for entering different data-types in the command-line.
+Version: 0.1.0
+Author: Daniel W. Kennedy (dan.w.kennedy@outlook.com)
+Maintainer: Daniel W. Kennedy <dan.w.kennedy@outlook.com>
+Description: This package contains basic functions for entering data in the command-line.
+    The functions can be thought of as extensions to the `readline` function which ensures 
+    a compliant value is entered, and that the result is coerced into the correct data-type.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    lubridate
+RoxygenNote: 7.1.1
