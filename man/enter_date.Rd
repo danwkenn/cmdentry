@@ -4,10 +4,12 @@
 \alias{enter_date}
 \title{Enter a date}
 \usage{
-enter_date(prompt = "Enter a date in the form DD/MM/YYYY")
+enter_date(prompt = "Enter a date in the form DD/MM/YYYY", coerce = TRUE)
 }
 \arguments{
 \item{prompt}{Message to guide user input}
+
+\item{coerce}{Convert to Date type?}
 }
 \description{
 Enter a date

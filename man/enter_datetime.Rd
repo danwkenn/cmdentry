@@ -4,10 +4,15 @@
 \alias{enter_datetime}
 \title{Enter a date-time value:}
 \usage{
-enter_datetime(prompt = "Enter date-time in the form of DD/MM/YYYY HH:MM:SS")
+enter_datetime(
+  prompt = "Enter date-time in the form of DD/MM/YYYY HH:MM:SS",
+  coerce = TRUE
+)
 }
 \arguments{
 \item{prompt}{Message to guide user input}
+
+\item{coerce}{Convert to Date-time type?}
 }
 \description{
 Enter a date-time value:

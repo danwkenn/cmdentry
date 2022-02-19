@@ -2,7 +2,7 @@
 % Please edit documentation in R/enter.R
 \name{enter_character}
 \alias{enter_character}
-\title{Enter a character}
+\title{Enter a character string}
 \usage{
 enter_character(prompt = "Enter characters:")
 }
@@ -10,5 +10,5 @@ enter_character(prompt = "Enter characters:")
 \item{prompt}{Message to guide user input}
 }
 \description{
-Enter a character
+Enter a character string
 }

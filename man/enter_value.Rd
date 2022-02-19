@@ -4,7 +4,13 @@
 \alias{enter_value}
 \title{Enter a value:}
 \usage{
-enter_value(prompt = NULL, template, print_list = TRUE, allow_enter = FALSE)
+enter_value(
+  prompt = NULL,
+  template,
+  print_list = TRUE,
+  allow_enter = FALSE,
+  coerce = TRUE
+)
 }
 \arguments{
 \item{prompt}{Message to guide user input}
@@ -14,6 +20,8 @@ enter_value(prompt = NULL, template, print_list = TRUE, allow_enter = FALSE)
 \item{print_list}{If a factor, print the options/levels as a list?}
 
 \item{allow_enter}{If a factor and there is only a single value, allow the user to press enter to select that value.}
+
+\item{coerce}{Coerce to output format?}
 }
 \description{
 Enter a value:

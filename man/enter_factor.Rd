@@ -8,7 +8,8 @@ enter_factor(
   prompt = "Select an option from the list",
   levels,
   print_list = TRUE,
-  allow_enter = TRUE
+  allow_enter = TRUE,
+  coerce = TRUE
 )
 }
 \arguments{
@@ -19,6 +20,8 @@ enter_factor(
 \item{print_list}{Print the options/levels as a list?}
 
 \item{allow_enter}{If there is only a single value, allow the user to press enter to select that value.}
+
+\item{coerce}{Convert to factor?}
 }
 \description{
 Enter a factor value:

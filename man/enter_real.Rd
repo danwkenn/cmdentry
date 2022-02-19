@@ -4,10 +4,12 @@
 \alias{enter_real}
 \title{Enter a floating-point (double precision) number:}
 \usage{
-enter_real(prompt = "Enter number in a non-ambiguous form:")
+enter_real(prompt = "Enter number in a non-ambiguous form:", coerce = TRUE)
 }
 \arguments{
 \item{prompt}{Message to guide user input}
+
+\item{coerce}{Convert to Date type?}
 }
 \description{
 Enter a floating-point (double precision) number:

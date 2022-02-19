@@ -4,10 +4,12 @@
 \alias{enter_boolean}
 \title{Enter a TRUE/FALSE value:}
 \usage{
-enter_boolean(prompt = "Enter TRUE/FALSE or T/F")
+enter_boolean(prompt = "Enter TRUE/FALSE or T/F", coerce = TRUE)
 }
 \arguments{
 \item{prompt}{Message to guide user input}
+
+\item{coerce}{Coerce to boolean value?}
 }
 \description{
 Enter a TRUE/FALSE value:

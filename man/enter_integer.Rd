@@ -4,10 +4,12 @@
 \alias{enter_integer}
 \title{Enter an integer}
 \usage{
-enter_integer(prompt = "Enter an integer value:")
+enter_integer(prompt = "Enter an integer value:", coerce = TRUE)
 }
 \arguments{
 \item{prompt}{Message to guide user input}
+
+\item{coerce}{Convert to integer type?}
 }
 \description{
 Enter an integer

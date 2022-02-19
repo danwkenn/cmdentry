@@ -1,4 +1,4 @@
-#' Enter a character
+#' Enter a character string
 #' @param prompt Message to guide user input
 #' @export
 enter_character <- function(prompt = "Enter characters:"){
@@ -8,15 +8,21 @@ enter_character <- function(prompt = "Enter characters:"){
 
 #' Enter an integer
 #' @param prompt Message to guide user input
+#' @param coerce Convert to integer type?
 #' @export
-enter_integer <- function(prompt = "Enter an integer value:"){
+enter_integer <- function(prompt = "Enter an integer value:",
+                          coerce = TRUE){
   if(is.null(prompt)){prompt = "Enter an integer value:"}
   COMPLETE <- FALSE
   while(!COMPLETE){
     user_response <- readLine2(message = prompt)
     if(grepl(user_response,pattern = "^\\d+$")){
       COMPLETE <- TRUE
-      return(user_response)
+      if(coerce){
+        return(as.integer(user_response))
+      }else{
+        return(user_response)
+      }
     }
     message("Must be a number.")
   }
@@ -25,8 +31,10 @@ enter_integer <- function(prompt = "Enter an integer value:"){
 
 #' Enter a date
 #' @param prompt Message to guide user input
+#' @param coerce Convert to Date type?
 #' @export
-enter_date <- function(prompt = "Enter a date in the form DD/MM/YYYY"){
+enter_date <- function(prompt = "Enter a date in the form DD/MM/YYYY",
+                       coerce = TRUE){
 
   if(is.null(prompt)){prompt = "Enter a date in the form DD/MM/YYYY"}
 
@@ -35,39 +43,22 @@ enter_date <- function(prompt = "Enter a date in the form DD/MM/YYYY"){
     user_response <- readLine2(message = prompt)
     if(grepl(user_response,pattern = "^\\d{1,2}/\\d{1,2}/\\d{4}")){
       COMPLETE <- TRUE
-      return((lubridate::dmy(user_response)))
+      if(coerce){
+        return(lubridate::dmy(user_response))
+      }else{
+        return(user_response)
+      }
     }
     message("Must be of the form DD/MM/YYYY.")
   }
 }
 
-#' Enter a time duration
-#' @param prompt Message to guide user input
-#' @export
-enter_duration <- function(prompt = "Enter a duration of time in the form HH:MM:SS"){
-
-  if(is.null(prompt)){prompt = "Enter a duration of time in the form HH:MM:SS"}
-
-  COMPLETE <- FALSE
-  while(!COMPLETE){
-    user_response <- readLine2(message = prompt)
-    if(user_response %in% c("NA","NA_real_","NA_integer_")){
-      return(NA)
-    }
-    if(!is.na(lubridate::period(user_response,units = c('day','hour','minute','second')))){
-      COMPLETE <- TRUE
-    }else{
-    message("Must be of a form recognised by period.")
-    }
-  }
-
-  Period_c(as.character(lubridate::period(user_response)))
-}
-
 #' Enter a floating-point (double precision) number:
 #' @param prompt Message to guide user input
+#' @param coerce Convert to Date type?
 #' @export
-enter_real <- function(prompt = "Enter number in a non-ambiguous form:"){
+enter_real <- function(prompt = "Enter number in a non-ambiguous form:",
+                       coerce = TRUE){
 
   if(is.null(prompt)){prompt = "Enter number in a non-ambiguous form:"}
 
@@ -79,17 +70,22 @@ enter_real <- function(prompt = "Enter number in a non-ambiguous form:"){
     }
     if(!is.na(as.double(user_response))){
       COMPLETE <- TRUE
-      return(as.double(user_response))
+      if(coerce){
+        return(as.double(user_response))
+      }else{
+        return(user_response)
+      }
     }
     message("Must be a number in a non-ambiguous format.")
   }
-
 }
 
 #' Enter a date-time value:
 #' @param prompt Message to guide user input
+#' @param coerce Convert to Date-time type?
 #' @export
-enter_datetime <- function(prompt = "Enter date-time in the form of DD/MM/YYYY HH:MM:SS"){
+enter_datetime <- function(prompt = "Enter date-time in the form of DD/MM/YYYY HH:MM:SS",
+                           coerce = TRUE){
 
   if(is.null(prompt)){prompt = "Enter date-time in the form of DD/MM/YYYY HH:MM:SS"}
 
@@ -98,7 +94,11 @@ enter_datetime <- function(prompt = "Enter date-time in the form of DD/MM/YYYY H
     user_response <- readLine2(message = prompt)
     if(grepl(user_response,pattern = "^\\d{1,2}/\\d{1,2}/\\d{4} \\d{1:2}:\\d{1,2}:\\d{1,2}")){
       COMPLETE <- TRUE
-      return((lubridate::dmy_hms(user_response)))
+      if(coerce){
+        return((lubridate::dmy_hms(user_response)))
+      }else{
+        return(user_response)
+      }
     }
     message("Must be of the form DD/MM/YYYY HH:MM:SS.")
   }
@@ -110,11 +110,13 @@ enter_datetime <- function(prompt = "Enter date-time in the form of DD/MM/YYYY H
 #' @param levels Possible factor levels that can be entered.
 #' @param print_list Print the options/levels as a list?
 #' @param allow_enter If there is only a single value, allow the user to press enter to select that value.
+#' @param coerce Convert to factor?
 #' @export
 enter_factor <- function(prompt = "Select an option from the list",
                          levels,
                          print_list = TRUE,
-                         allow_enter = TRUE){
+                         allow_enter = TRUE,
+                         coerce = TRUE){
 
   if(is.null(prompt)){prompt = "Select an option from the list"}
 
@@ -138,14 +140,20 @@ enter_factor <- function(prompt = "Select an option from the list",
       message("Response must be from the list")
     }
   }
-  factor(user_response, levels = levels)
+  if(coerce){
+    factor(user_response, levels = levels)
+  }else{
+    user_response
   }
+}
 
 
 #' Enter a TRUE/FALSE value:
 #' @param prompt Message to guide user input
+#' @param coerce Coerce to boolean value?
 #' @export
-enter_boolean <- function(prompt = "Enter TRUE/FALSE or T/F"){
+enter_boolean <- function(prompt = "Enter TRUE/FALSE or T/F",
+                          coerce = TRUE){
 
   if(is.null(prompt)){prompt = "Enter TRUE/FALSE or T/F"}
 
@@ -162,7 +170,11 @@ enter_boolean <- function(prompt = "Enter TRUE/FALSE or T/F"){
       message("Response must be TRUE/FALSE or T/F")
     }
   }
-  as.logical(user_response)
+  if(coerce){
+    as.logical(user_response)
+  }else{
+    user_response
+  }
 }
 
 #' Enter a value:
@@ -170,31 +182,36 @@ enter_boolean <- function(prompt = "Enter TRUE/FALSE or T/F"){
 #' @param template atomic vector to guess the vector type.
 #' @param print_list If a factor, print the options/levels as a list?
 #' @param allow_enter If a factor and there is only a single value, allow the user to press enter to select that value.
+#' @param coerce Coerce to output format?
 #' @export
-enter_value <- function(prompt = NULL,template, print_list = TRUE,allow_enter = FALSE){
+enter_value <- function(prompt = NULL,template, print_list = TRUE,allow_enter = FALSE,coerce = TRUE){
 
   if(class(template) == "factor"){
-    return(enter_factor(prompt = prompt,levels = levels(template),print_list = print_list,allow_enter = allow_enter))
+    return(enter_factor(prompt = prompt,
+                        levels = levels(template),
+                        print_list = print_list,
+                        allow_enter = allow_enter,
+                        coerce = coerce))
   }
 
   if(class(template) == "integer"){
-    return(enter_integer(prompt = prompt))
-  }
-
-  if(class(template) %in% c("Period", "Period_c")){
-    return(enter_duration(prompt))
+    return(enter_integer(prompt = prompt,
+                         coerce = coerce))
   }
 
   if(class(template) == "Date"){
-    return(enter_date(prompt))
+    return(enter_date(prompt,
+                      coerce = coerce))
   }
 
   if(class(template) == "numeric"){
-    return(enter_real(prompt))
+    return(enter_real(prompt,
+                      coerce = coerce))
   }
 
   if(class(template) == "logical"){
-    return(enter_boolean(prompt))
+    return(enter_boolean(prompt,
+                         coerce = coerce))
   }
   enter_character(prompt)
 }
