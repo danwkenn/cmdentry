@@ -14,3 +14,15 @@ enter_boolean(prompt = "Enter TRUE/FALSE or T/F", coerce = TRUE)
 \description{
 Enter a TRUE/FALSE value:
 }
+\examples{
+fun <- function() {
+  ANSWER <- enter_boolean("True or False: \"I am satisfed with R.\"")
+  ## a better version would check the answer less cursorily, and
+  ## perhaps re-prompt
+  if (!ANSWER)
+    cat("This is impossible.  YOU LIED!\n")
+  else
+    cat("I knew it.\n")
+}
+if(interactive()) fun()
+}

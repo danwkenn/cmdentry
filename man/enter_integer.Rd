@@ -14,3 +14,15 @@ enter_integer(prompt = "Enter an integer value:", coerce = TRUE)
 \description{
 Enter an integer
 }
+\examples{
+fun <- function() {
+  ANSWER <- enter_integer("How many times have you thought about just how satisfying R is? ")
+  ## a better version would check the answer less cursorily, and
+  ## perhaps re-prompt
+  if (ANSWER == 0)
+    cat("This is impossible.  YOU LIED!\n")
+  else
+    cat("I knew it.\n")
+}
+if(interactive()) fun()
+}

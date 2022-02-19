@@ -12,3 +12,15 @@ enter_character(prompt = "Enter characters:")
 \description{
 Enter a character string
 }
+\examples{
+fun <- function() {
+  ANSWER <- enter_character("Are you a satisfied R user? ")
+  ## a better version would check the answer less cursorily, and
+  ## perhaps re-prompt
+  if (substr(ANSWER, 1, 1) == "n")
+    cat("This is impossible.  YOU LIED!\n")
+  else
+    cat("I knew it.\n")
+}
+if(interactive()) fun()
+}

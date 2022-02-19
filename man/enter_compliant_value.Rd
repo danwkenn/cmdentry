@@ -20,3 +20,11 @@ enter_compliant_value(
 \description{
 Enter value with compliance rule.
 }
+\examples{
+fun <- function(){
+  enter_compliant_value(prompt = "Enter time in 24 hour format (HH:MM):",
+                        compliance = function(x){grepl(pattern = "(0|1|2)\\\\d:[0-5]\\\\d", x)},
+                        fail_message = "Input is an invalid time or format")
+}
+if(interactive()) fun()
+}

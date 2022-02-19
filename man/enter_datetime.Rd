@@ -17,3 +17,15 @@ enter_datetime(
 \description{
 Enter a date-time value:
 }
+\examples{
+fun <- function() {
+  ANSWER <- enter_datetime("When exactly did you become fully satisfied with R?")
+  ## a better version would check the answer less cursorily, and
+  ## perhaps re-prompt
+  if (ANSWER < "2000-02-29 00:00:00 GMT")
+    cat("This is impossible.  YOU LIED!\n")
+  else
+    cat("I knew it.\n")
+}
+if(interactive()) fun()
+}

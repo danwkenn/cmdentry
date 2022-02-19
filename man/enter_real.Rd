@@ -14,3 +14,15 @@ enter_real(prompt = "Enter number in a non-ambiguous form:", coerce = TRUE)
 \description{
 Enter a floating-point (double precision) number:
 }
+\examples{
+fun <- function() {
+  ANSWER <- enter_real("On a scale of 0 to 1, how satisfied with 1 are you (fractions allowed)?")
+  ## a better version would check the answer less cursorily, and
+  ## perhaps re-prompt
+  if (ANSWER < 1)
+    cat("This is impossible.  YOU LIED!\n")
+  else
+    cat("I knew it.\n")
+}
+if(interactive()) fun()
+}

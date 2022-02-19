@@ -26,3 +26,11 @@ enter_factor(
 \description{
 Enter a factor value:
 }
+\examples{
+fun <- function() {
+  ANSWER <- enter_factor("How satisfied with R are you?",
+  levels = c("Extremely", "Quite a lot", "Very","Surprisingly"))
+  cat("I knew it.\n")
+}
+if(interactive()) fun()
+}

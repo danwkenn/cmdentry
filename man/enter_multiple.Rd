@@ -14,3 +14,9 @@ enter_multiple(data, auto_values = NULL)
 \description{
 Enter a value:
 }
+\examples{
+fun <- function(){
+enter_multiple(data = iris, auto_values = c(Sepal.Length = 10.5))
+}
+if(interactive()) fun()
+}

@@ -26,3 +26,15 @@ enter_value(
 \description{
 Enter a value:
 }
+\examples{
+fun <- function() {
+ ANSWER <- enter_value("True or False: \"I am satisfed with R.\"",template = TRUE)
+ ## a better version would check the answer less cursorily, and
+ ## perhaps re-prompt
+ if (!ANSWER)
+   cat("This is impossible.  YOU LIED!\n")
+ else
+   cat("I knew it.\n")
+}
+if(interactive()) fun()
+}

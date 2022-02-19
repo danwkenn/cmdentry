@@ -3,7 +3,6 @@
 export(enter_boolean)
 export(enter_character)
 export(enter_compliant_value)
-export(enter_date)
 export(enter_datetime)
 export(enter_factor)
 export(enter_integer)
